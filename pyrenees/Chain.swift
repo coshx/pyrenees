@@ -8,7 +8,7 @@ public class Chain<T> {
         self.nextCommand?(t)
     }
 
-    func then<U>(command: (T?, U? -> Void) -> Void) -> Chain<U> {
+    public func then<U>(command: (T?, U? -> Void) -> Void) -> Chain<U> {
         let e = Chain<U>()
 
         nextCommand = { command($0, e.next) }
@@ -17,12 +17,12 @@ public class Chain<T> {
         return e
     }
 
-    func endWith(command: T? -> Void) {
+    public func endWith(command: T? -> Void) {
         nextCommand = command
         runCommand!()
     }
 
-    static func startWith(command: (T? -> Void) -> Void) -> Chain<T> {
+    public static func startWith(command: (T? -> Void) -> Void) -> Chain<T> {
         let e = Chain<T>()
 
         e.runCommand = { command(e.next) }
