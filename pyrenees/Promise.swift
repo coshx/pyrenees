@@ -1,3 +1,8 @@
+/**
+ * **Promise**
+ *
+ * Simple promise with a single callback. Used by client.
+ */
 public class Promise<T>: IPromise {
     private let invalidationLock = NSObject()
 
@@ -9,17 +14,30 @@ public class Promise<T>: IPromise {
         self.isValid = true
     }
 
+    /**
+     * Attachs callback to run on main thread
+     *
+     * - parameter action: Callback
+     */
     public func onSuccess(action: (T) -> Void) -> Promise<T> {
         self.onSuccessAction = action
         return self
     }
 
+    /**
+     * Attachs callback to run on a background thread
+     *
+     * - parameter action: Callback
+     */
     public func onSuccessInBackground(action: (T) -> Void) -> Promise<T> {
         self.onSuccessAction = action
         self.runOnSuccessOnMain = false
         return self
     }
 
+    /**
+     * Invalidates promise
+     */
     public func invalidate() {
         synchronized(invalidationLock) {
             self.isValid = false
@@ -27,6 +45,11 @@ public class Promise<T>: IPromise {
     }
 }
 
+/**
+ * **PromiseTrigger**
+ *
+ * Triggers actions on parent promise. Used by server.
+ */
 public class PromiseTrigger<T> {
     private weak var parent: Promise<T>?
 
@@ -34,6 +57,11 @@ public class PromiseTrigger<T> {
         self.parent = parent
     }
 
+    /**
+     * Triggers onSuccess action
+     *
+     * - parameter t: Outcome to pass
+     */
     public func onSuccess(t: T) {
         let queue = (self.parent!.runOnSuccessOnMain) ? dispatch_get_main_queue() : dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -49,7 +77,19 @@ public class PromiseTrigger<T> {
     }
 }
 
+/**
+ * **PromiseBuilder**
+ *
+ * Builds a promise and its trigger pair. Used by server.
+ */
 public class PromiseBuilder<T> {
+    private init() { }
+
+    /**
+     * Builds promise tuple
+     *
+     * - returns Promise/Trigger tuple
+     */
     public static func build() -> (itself: Promise<T>, trigger: PromiseTrigger<T>) {
         let p = Promise<T>()
         return (p, PromiseTrigger<T>(parent: p))
