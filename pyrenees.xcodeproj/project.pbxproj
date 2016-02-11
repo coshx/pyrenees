@@ -7,13 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7B729E71C6CF7A8009B1E13 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729E61C6CF7A8009B1E13 /* StringExtension.swift */; };
+		A7B729E91C6CF7D1009B1E13 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729E81C6CF7D1009B1E13 /* IntExtension.swift */; };
+		A7B729EB1C6CF819009B1E13 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729EA1C6CF819009B1E13 /* Utils.swift */; };
+		A7B729ED1C6CF856009B1E13 /* IPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729EC1C6CF856009B1E13 /* IPromise.swift */; };
+		A7B729EF1C6CF875009B1E13 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729EE1C6CF875009B1E13 /* Promise.swift */; };
 		A7DB51E51C6C23E900C3D841 /* pyrenees.h in Headers */ = {isa = PBXBuildFile; fileRef = A7DB51E41C6C23E900C3D841 /* pyrenees.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7DB51ED1C6C266700C3D841 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB51EC1C6C266700C3D841 /* Chain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A7B729E61C6CF7A8009B1E13 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = extensions/StringExtension.swift; sourceTree = "<group>"; };
+		A7B729E81C6CF7D1009B1E13 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntExtension.swift; path = extensions/IntExtension.swift; sourceTree = "<group>"; };
+		A7B729EA1C6CF819009B1E13 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A7B729EC1C6CF856009B1E13 /* IPromise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPromise.swift; sourceTree = "<group>"; };
+		A7B729EE1C6CF875009B1E13 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		A7DB51E11C6C23E900C3D841 /* pyrenees.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pyrenees.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7DB51E41C6C23E900C3D841 /* pyrenees.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pyrenees.h; sourceTree = "<group>"; };
 		A7DB51E61C6C23E900C3D841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7DB51EC1C6C266700C3D841 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7B729E51C6CF766009B1E13 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A7B729E61C6CF7A8009B1E13 /* StringExtension.swift */,
+				A7B729E81C6CF7D1009B1E13 /* IntExtension.swift */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
 		A7DB51D71C6C23E900C3D841 = {
 			isa = PBXGroup;
 			children = (
@@ -46,8 +67,13 @@
 		A7DB51E31C6C23E900C3D841 /* pyrenees */ = {
 			isa = PBXGroup;
 			children = (
+				A7B729E51C6CF766009B1E13 /* extensions */,
 				A7DB51E41C6C23E900C3D841 /* pyrenees.h */,
 				A7DB51E61C6C23E900C3D841 /* Info.plist */,
+				A7DB51EC1C6C266700C3D841 /* Chain.swift */,
+				A7B729EA1C6CF819009B1E13 /* Utils.swift */,
+				A7B729EC1C6CF856009B1E13 /* IPromise.swift */,
+				A7B729EE1C6CF875009B1E13 /* Promise.swift */,
 			);
 			path = pyrenees;
 			sourceTree = "<group>";
@@ -74,6 +100,7 @@
 				A7DB51DD1C6C23E900C3D841 /* Frameworks */,
 				A7DB51DE1C6C23E900C3D841 /* Headers */,
 				A7DB51DF1C6C23E900C3D841 /* Resources */,
+				A7B729F21C6D035D009B1E13 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -125,11 +152,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A7B729F21C6D035D009B1E13 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint --config \"${SRCROOT}/swiftlint.yml\"\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A7DB51DC1C6C23E900C3D841 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7B729E71C6CF7A8009B1E13 /* StringExtension.swift in Sources */,
+				A7B729ED1C6CF856009B1E13 /* IPromise.swift in Sources */,
+				A7DB51ED1C6C266700C3D841 /* Chain.swift in Sources */,
+				A7B729E91C6CF7D1009B1E13 /* IntExtension.swift in Sources */,
+				A7B729EB1C6CF819009B1E13 /* Utils.swift in Sources */,
+				A7B729EF1C6CF875009B1E13 /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +277,7 @@
 		A7DB51EA1C6C23E900C3D841 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -239,12 +289,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coshx.pyrenees;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		A7DB51EB1C6C23E900C3D841 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -278,6 +330,7 @@
 				A7DB51EB1C6C23E900C3D841 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
