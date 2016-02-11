@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7B729E71C6CF7A8009B1E13 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729E61C6CF7A8009B1E13 /* StringExtension.swift */; };
+		A7B729E91C6CF7D1009B1E13 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729E81C6CF7D1009B1E13 /* IntExtension.swift */; };
 		A7DB51E51C6C23E900C3D841 /* pyrenees.h in Headers */ = {isa = PBXBuildFile; fileRef = A7DB51E41C6C23E900C3D841 /* pyrenees.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7DB51ED1C6C266700C3D841 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB51EC1C6C266700C3D841 /* Chain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A7B729E61C6CF7A8009B1E13 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = extensions/StringExtension.swift; sourceTree = "<group>"; };
+		A7B729E81C6CF7D1009B1E13 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntExtension.swift; path = extensions/IntExtension.swift; sourceTree = "<group>"; };
 		A7DB51E11C6C23E900C3D841 /* pyrenees.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pyrenees.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7DB51E41C6C23E900C3D841 /* pyrenees.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pyrenees.h; sourceTree = "<group>"; };
 		A7DB51E61C6C23E900C3D841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -29,6 +33,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7B729E51C6CF766009B1E13 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A7B729E61C6CF7A8009B1E13 /* StringExtension.swift */,
+				A7B729E81C6CF7D1009B1E13 /* IntExtension.swift */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
 		A7DB51D71C6C23E900C3D841 = {
 			isa = PBXGroup;
 			children = (
@@ -48,6 +61,7 @@
 		A7DB51E31C6C23E900C3D841 /* pyrenees */ = {
 			isa = PBXGroup;
 			children = (
+				A7B729E51C6CF766009B1E13 /* extensions */,
 				A7DB51E41C6C23E900C3D841 /* pyrenees.h */,
 				A7DB51E61C6C23E900C3D841 /* Info.plist */,
 				A7DB51EC1C6C266700C3D841 /* Chain.swift */,
@@ -133,7 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7B729E71C6CF7A8009B1E13 /* StringExtension.swift in Sources */,
 				A7DB51ED1C6C266700C3D841 /* Chain.swift in Sources */,
+				A7B729E91C6CF7D1009B1E13 /* IntExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +301,7 @@
 				A7DB51EB1C6C23E900C3D841 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
