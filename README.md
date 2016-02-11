@@ -28,4 +28,4 @@ And run `carthage update`.
 
 ### Using as a submodule
 
-Clone this repo and add `Pyrenees.xcodeproj` into your workspace. 
+Clone this repo and add `pyrenees.xcodeproj` into your workspace. 
