@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A7DB51E51C6C23E900C3D841 /* pyrenees.h in Headers */ = {isa = PBXBuildFile; fileRef = A7DB51E41C6C23E900C3D841 /* pyrenees.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7DB51ED1C6C266700C3D841 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB51EC1C6C266700C3D841 /* Chain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A7DB51E11C6C23E900C3D841 /* pyrenees.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pyrenees.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7DB51E41C6C23E900C3D841 /* pyrenees.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pyrenees.h; sourceTree = "<group>"; };
 		A7DB51E61C6C23E900C3D841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7DB51EC1C6C266700C3D841 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			children = (
 				A7DB51E41C6C23E900C3D841 /* pyrenees.h */,
 				A7DB51E61C6C23E900C3D841 /* Info.plist */,
+				A7DB51EC1C6C266700C3D841 /* Chain.swift */,
 			);
 			path = pyrenees;
 			sourceTree = "<group>";
@@ -130,6 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7DB51ED1C6C266700C3D841 /* Chain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +232,7 @@
 		A7DB51EA1C6C23E900C3D841 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -239,12 +244,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coshx.pyrenees;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		A7DB51EB1C6C23E900C3D841 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
