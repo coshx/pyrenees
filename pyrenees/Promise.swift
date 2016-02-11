@@ -18,6 +18,8 @@ public class Promise<T>: IPromise {
      * Attachs callback to run on main thread
      *
      * - parameter action: Callback
+     *
+     * - returns: Itself
      */
     public func onSuccess(action: (T) -> Void) -> Promise<T> {
         self.onSuccessAction = action
@@ -28,6 +30,8 @@ public class Promise<T>: IPromise {
      * Attachs callback to run on a background thread
      *
      * - parameter action: Callback
+     *
+     * - returns: Itself
      */
     public func onSuccessInBackground(action: (T) -> Void) -> Promise<T> {
         self.onSuccessAction = action

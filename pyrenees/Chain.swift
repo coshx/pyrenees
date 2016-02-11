@@ -24,6 +24,8 @@ public class Chain<T> {
      * Queues a new command
      *
      * - parameter command: Command to run. First arg is an optinal argument from previous block, second one is the trigger for the tailing block
+     *
+     * - returns: Tailing chain
      */
     public func then<U>(command: (T?, U? -> Void) -> Void) -> Chain<U> {
         let e = Chain<U>()
@@ -48,6 +50,8 @@ public class Chain<T> {
      * Starts a new chain
      *
      * - parameter command: Action to run. Argument is the trigger for running tailing block.
+
+     * - returns: New chain
      */
     public static func startWith(command: (T? -> Void) -> Void) -> Chain<T> {
         let e = Chain<T>()
