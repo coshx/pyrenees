@@ -9,11 +9,12 @@ build:
 	  --author_url http://www.coshx.com/ \
 	  --github_url $(repo) \
 	  --root-url https://coshx.github.io/pyrenees/ \
-	  --module-version 1.1.0 \
+	  --module-version 0.1.0 \
 	  --x -project,pyrenees.xcodeproj \
+	  --module pyrenees \
 	  --output ../ \
 	  --theme fullwidth
 	rm -rf src
 
 clean:
-	rm -rf Classes* Enums* css js img docsets index.html undocumented.txt src
+	rm -rf Classes* Enums* Extensions* Protocols* Functions* css js img docsets index.html undocumented.txt src
