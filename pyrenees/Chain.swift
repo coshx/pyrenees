@@ -53,8 +53,8 @@ public class Chain<T> {
 
      * - returns: New chain
      */
-    public static func startWith(command: (T? -> Void) -> Void) -> Chain<T> {
-        let e = Chain<T>()
+    public static func startWith<U>(command: (U? -> Void) -> Void) -> Chain<U> {
+        let e = Chain<U>()
 
         e.runCommand = { command(e.next) }
 

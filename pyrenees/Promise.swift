@@ -23,6 +23,7 @@ public class Promise<T>: IPromise {
      */
     public func onSuccess(action: (T) -> Void) -> Promise<T> {
         self.onSuccessAction = action
+        self.runOnSuccessOnMain = true
         return self
     }
 
@@ -69,12 +70,17 @@ public class PromiseTrigger<T> {
     public func onSuccess(t: T) {
         let queue = (self.parent!.runOnSuccessOnMain) ? dispatch_get_main_queue() : dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
+        guard let p1 = self.parent where p1.isValid else {
+            return
+        }
+
         dispatch_async(queue) {
-            if self.parent!.isValid {
-                synchronized(self.parent!.invalidationLock) {
-                    if self.parent!.isValid {
-                        self.parent!.onSuccessAction(t)
-                    }
+            guard let p2 = self.parent where p2.isValid else {
+                return
+            }
+            synchronized(p2.invalidationLock) {
+                if p2.isValid {
+                    p2.onSuccessAction(t)
                 }
             }
         }
