@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  version = "0.1.1"
+  version = "0.2.0"
 
   s.name         = "Pyrenees"
   s.version      = version
