@@ -14,6 +14,7 @@
 		A7B729EF1C6CF875009B1E13 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729EE1C6CF875009B1E13 /* Promise.swift */; };
 		A7DB51E51C6C23E900C3D841 /* pyrenees.h in Headers */ = {isa = PBXBuildFile; fileRef = A7DB51E41C6C23E900C3D841 /* pyrenees.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7DB51ED1C6C266700C3D841 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB51EC1C6C266700C3D841 /* Chain.swift */; };
+		A7EECE481C7549AB00668984 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EECE471C7549AB00668984 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A7DB51E41C6C23E900C3D841 /* pyrenees.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pyrenees.h; sourceTree = "<group>"; };
 		A7DB51E61C6C23E900C3D841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7DB51EC1C6C266700C3D841 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
+		A7EECE471C7549AB00668984 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 		A7B729E51C6CF766009B1E13 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A7EECE471C7549AB00668984 /* UIColorExtension.swift */,
 				A7B729E61C6CF7A8009B1E13 /* StringExtension.swift */,
 				A7B729E81C6CF7D1009B1E13 /* IntExtension.swift */,
 			);
@@ -175,6 +178,7 @@
 			files = (
 				A7B729E71C6CF7A8009B1E13 /* StringExtension.swift in Sources */,
 				A7B729ED1C6CF856009B1E13 /* IPromise.swift in Sources */,
+				A7EECE481C7549AB00668984 /* UIColorExtension.swift in Sources */,
 				A7DB51ED1C6C266700C3D841 /* Chain.swift in Sources */,
 				A7B729E91C6CF7D1009B1E13 /* IntExtension.swift in Sources */,
 				A7B729EB1C6CF819009B1E13 /* Utils.swift in Sources */,
