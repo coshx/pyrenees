@@ -7,6 +7,9 @@ StringExtension.swift
 	var binaryToInt: Int { return Int(strtoul(self, nil, 2)) }
 	var binaryToDouble: Double { return Double(strtoul(self, nil, 2)) }
 	var binaryToHexa: String { return String(binaryToInt, radix: 16) }
+UIColorExtension.swift
+	public static func fromRGB(red: Int, green: Int, blue: Int) -> UIColor
+	public static func fromRGB(red: Int, green: Int, blue: Int, alpha: Double) -> UIColor
 IntExtension.swift
 	var binaryString: String { return String(self, radix: 2) }
 	var hexaString: String { return String(self, radix: 16) }
