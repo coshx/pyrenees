@@ -1,4 +1,4 @@
-public class Duration {
+public class Period {
     private var millisecondValue: Double
 
     public var milliseconds: Double {
