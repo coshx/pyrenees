@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A73549691C77DA3A00891240 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73549681C77DA3A00891240 /* Duration.swift */; };
+		A73549691C77DA3A00891240 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73549681C77DA3A00891240 /* Period.swift */; };
 		A7B729E71C6CF7A8009B1E13 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729E61C6CF7A8009B1E13 /* StringExtension.swift */; };
 		A7B729E91C6CF7D1009B1E13 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729E81C6CF7D1009B1E13 /* IntExtension.swift */; };
 		A7B729EB1C6CF819009B1E13 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B729EA1C6CF819009B1E13 /* Utils.swift */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A73549681C77DA3A00891240 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		A73549681C77DA3A00891240 /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		A7B729E61C6CF7A8009B1E13 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = extensions/StringExtension.swift; sourceTree = "<group>"; };
 		A7B729E81C6CF7D1009B1E13 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntExtension.swift; path = extensions/IntExtension.swift; sourceTree = "<group>"; };
 		A7B729EA1C6CF819009B1E13 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 				A7B729EA1C6CF819009B1E13 /* Utils.swift */,
 				A7B729EC1C6CF856009B1E13 /* IPromise.swift */,
 				A7B729EE1C6CF875009B1E13 /* Promise.swift */,
-				A73549681C77DA3A00891240 /* Duration.swift */,
+				A73549681C77DA3A00891240 /* Period.swift */,
 			);
 			path = pyrenees;
 			sourceTree = "<group>";
@@ -186,7 +186,7 @@
 				A7B729E91C6CF7D1009B1E13 /* IntExtension.swift in Sources */,
 				A7B729EB1C6CF819009B1E13 /* Utils.swift in Sources */,
 				A7B729EF1C6CF875009B1E13 /* Promise.swift in Sources */,
-				A73549691C77DA3A00891240 /* Duration.swift in Sources */,
+				A73549691C77DA3A00891240 /* Period.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,15 +1,15 @@
-public class Duration {
+public class Period {
     private var millisecondValue: Double
 
-    var milliseconds: Double {
+    public var milliseconds: Double {
         return millisecondValue
     }
 
-    var seconds: Double {
+    public var seconds: Double {
         return milliseconds / 1000
     }
 
-    var timer: Double {
+    public var timerValue: Double {
         return seconds
     }
 
