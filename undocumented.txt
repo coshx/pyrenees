@@ -14,7 +14,10 @@ IntExtension.swift
 	var binaryString: String { return String(self, radix: 2) }
 	var hexaString: String { return String(self, radix: 16) }
 	var doubleValue: Double { return Double(self) }
-Duration.swift
-	public class Duration
+Period.swift
+	public class Period
+	public var milliseconds: Double
+	public var seconds: Double
+	public var timerValue: Double
 	public init(milliseconds: Double)
 	public convenience init(seconds: Double)
