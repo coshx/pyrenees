@@ -6,12 +6,23 @@
 public class Promise<T>: IPromise {
     private let invalidationLock = NSObject()
 
-    private var onSuccessAction: (T) -> Void = { _ in }
-    private var runOnSuccessOnMain = true
     private var isValid: Bool
+    private var nextCallInBackground = false
+    private var allInBackgroundValue = false
+    private var onSuccessAction: (inBackground: Bool, action: ((T) -> Void)?)?
 
     private init() {
         self.isValid = true
+    }
+
+    public func allInBackground() -> Promise<T> {
+        self.allInBackgroundValue = true
+        return self
+    }
+
+    public func inBackground() -> Promise<T> {
+        self.nextCallInBackground = true
+        return self
     }
 
     /**
@@ -22,21 +33,8 @@ public class Promise<T>: IPromise {
      * - returns: Itself
      */
     public func onSuccess(action: (T) -> Void) -> Promise<T> {
-        self.onSuccessAction = action
-        self.runOnSuccessOnMain = true
-        return self
-    }
-
-    /**
-     * Attachs callback to run on a background thread
-     *
-     * - parameter action: Callback
-     *
-     * - returns: Itself
-     */
-    public func onSuccessInBackground(action: (T) -> Void) -> Promise<T> {
-        self.onSuccessAction = action
-        self.runOnSuccessOnMain = false
+        onSuccessAction = (allInBackgroundValue || nextCallInBackground, action)
+        nextCallInBackground = false
         return self
     }
 
@@ -68,19 +66,23 @@ public class PromiseTrigger<T> {
      * - parameter t: Outcome to pass
      */
     public func onSuccess(t: T) {
-        let queue = (self.parent!.runOnSuccessOnMain) ? dispatch_get_main_queue() : dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
         guard let p1 = self.parent where p1.isValid else {
             return
         }
 
+        guard let tuple = p1.onSuccessAction else {
+            return
+        }
+
+        let queue = (tuple.inBackground) ? dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) : dispatch_get_main_queue()
         dispatch_async(queue) {
             guard let p2 = self.parent where p2.isValid else {
                 return
             }
             synchronized(p2.invalidationLock) {
                 if p2.isValid {
-                    p2.onSuccessAction(t)
+                    tuple.action?(t)
                 }
             }
         }
@@ -98,7 +100,7 @@ public class PromiseBuilder<T> {
     /**
      * Builds promise tuple
      *
-     * - returns Promise/Trigger tuple
+     * - returns: Promise/Trigger tuple
      */
     public static func build() -> (itself: Promise<T>, trigger: PromiseTrigger<T>) {
         let p = Promise<T>()
