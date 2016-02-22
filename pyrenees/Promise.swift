@@ -15,18 +15,28 @@ public class Promise<T>: IPromise {
         self.isValid = true
     }
 
+    /**
+     * Runs any callback in background
+     *
+     * - returns: itself
+     */
     public func allInBackground() -> Promise<T> {
         self.allInBackgroundValue = true
         return self
     }
 
+    /**
+     * Runs next attached callback in background
+     *
+     * - returns: itself
+     */
     public func inBackground() -> Promise<T> {
         self.nextCallInBackground = true
         return self
     }
 
     /**
-     * Attachs callback to run on main thread
+     * Attachs new callback
      *
      * - parameter action: Callback
      *
