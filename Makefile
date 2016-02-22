@@ -9,7 +9,7 @@ build:
 	  --author_url http://www.coshx.com/ \
 	  --github_url $(repo) \
 	  --root-url https://coshx.github.io/pyrenees/ \
-	  --module-version 0.3.1 \
+	  --module-version "`git describe --abbrev=0 --tags`" \
 	  --x -project,pyrenees.xcodeproj \
 	  --module pyrenees \
 	  --output ../ \
