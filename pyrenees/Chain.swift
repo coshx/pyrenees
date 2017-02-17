@@ -4,19 +4,19 @@
  * Prevents spaghetti code/ pyramid of doom when running multiple asynchronous actions
  * *then* functions might need to be hard typed if types are not guessable automatically by the compiler.
  */
-public class Chain<T> {
+open class Chain<T> {
     /**
      * Trigger the chain from the start
      */
-    private var runCommand: (Void -> Void)?
+    fileprivate var runCommand: ((Void) -> Void)?
     /**
      * Runs tailing command
      */
-    private var nextCommand: (T? -> Void)?
+    fileprivate var nextCommand: ((T?) -> Void)?
 
-    private init() { }
+    fileprivate init() { }
 
-    private func next(t: T?) {
+    fileprivate func next(_ t: T?) {
         self.nextCommand?(t)
     }
 
@@ -27,7 +27,7 @@ public class Chain<T> {
      *
      * - returns: Tailing chain
      */
-    public func then<U>(command: (T?, U? -> Void) -> Void) -> Chain<U> {
+    open func then<U>(_ command: @escaping (T?, (U?) -> Void) -> Void) -> Chain<U> {
         let e = Chain<U>()
 
         nextCommand = { command($0, e.next) }
@@ -41,7 +41,7 @@ public class Chain<T> {
      *
      * - parameter command: Final command to run. Argument is the
      */
-    public func endWith(command: T? -> Void) {
+    open func endWith(_ command: @escaping (T?) -> Void) {
         nextCommand = command
         runCommand!()
     }
@@ -53,7 +53,7 @@ public class Chain<T> {
 
      * - returns: New chain
      */
-    public static func startWith<U>(command: (U? -> Void) -> Void) -> Chain<U> {
+    open static func startWith<U>(_ command: @escaping ((U?) -> Void) -> Void) -> Chain<U> {
         let e = Chain<U>()
 
         e.runCommand = { command(e.next) }

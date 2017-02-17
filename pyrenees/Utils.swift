@@ -4,7 +4,7 @@
  * - parameter lock: Lock object
  * - parameter action: Block to run while synchronized
  */
-public func synchronized(lock: AnyObject, @noescape action: () -> Void) {
+public func synchronized(_ lock: AnyObject, action: () -> Void) {
     objc_sync_enter(lock)
     action()
     objc_sync_exit(lock)

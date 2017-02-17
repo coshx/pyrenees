@@ -3,15 +3,15 @@
  *
  * Simple promise with a single callback. Used by client.
  */
-public class Promise<T>: IPromise {
-    private let invalidationLock = NSObject()
+open class Promise<T>: IPromise {
+    fileprivate let invalidationLock = NSObject()
 
-    private var isValid: Bool
-    private var nextCallInBackground = false
-    private var allInBackgroundValue = false
-    private var onSuccessAction: (inBackground: Bool, action: ((T) -> Void)?)?
+    fileprivate var isValid: Bool
+    fileprivate var nextCallInBackground = false
+    fileprivate var allInBackgroundValue = false
+    fileprivate var onSuccessAction: (inBackground: Bool, action: ((T) -> Void)?)?
 
-    private init() {
+    fileprivate init() {
         self.isValid = true
     }
 
@@ -20,7 +20,7 @@ public class Promise<T>: IPromise {
      *
      * - returns: itself
      */
-    public func allInBackground() -> Promise<T> {
+    open func allInBackground() -> Promise<T> {
         self.allInBackgroundValue = true
         return self
     }
@@ -30,7 +30,7 @@ public class Promise<T>: IPromise {
      *
      * - returns: itself
      */
-    public func inBackground() -> Promise<T> {
+    open func inBackground() -> Promise<T> {
         self.nextCallInBackground = true
         return self
     }
@@ -42,7 +42,7 @@ public class Promise<T>: IPromise {
      *
      * - returns: Itself
      */
-    public func onSuccess(action: (T) -> Void) -> Promise<T> {
+    open func onSuccess(_ action: ((T) -> Void)?) -> Promise<T> {
         onSuccessAction = (allInBackgroundValue || nextCallInBackground, action)
         nextCallInBackground = false
         return self
@@ -51,7 +51,7 @@ public class Promise<T>: IPromise {
     /**
      * Invalidates promise
      */
-    public func invalidate() {
+    open func invalidate() {
         synchronized(invalidationLock) {
             self.isValid = false
         }
@@ -63,10 +63,10 @@ public class Promise<T>: IPromise {
  *
  * Triggers actions on parent promise. Used by server.
  */
-public class PromiseTrigger<T> {
-    private weak var parent: Promise<T>?
+open class PromiseTrigger<T> {
+    fileprivate weak var parent: Promise<T>?
 
-    private init(parent: Promise<T>) {
+    fileprivate init(parent: Promise<T>) {
         self.parent = parent
     }
 
@@ -75,9 +75,9 @@ public class PromiseTrigger<T> {
      *
      * - parameter t: Outcome to pass
      */
-    public func onSuccess(t: T) {
+    open func onSuccess(_ t: T) {
 
-        guard let p1 = self.parent where p1.isValid else {
+        guard let p1 = self.parent, p1.isValid else {
             return
         }
 
@@ -85,9 +85,9 @@ public class PromiseTrigger<T> {
             return
         }
 
-        let queue = (tuple.inBackground) ? dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) : dispatch_get_main_queue()
-        dispatch_async(queue) {
-            guard let p2 = self.parent where p2.isValid else {
+        let queue = (tuple.inBackground) ? DispatchQueue.global(qos: .default) : DispatchQueue.main
+        queue.async {
+            guard let p2 = self.parent, p2.isValid else {
                 return
             }
             synchronized(p2.invalidationLock) {
@@ -104,15 +104,15 @@ public class PromiseTrigger<T> {
  *
  * Builds a promise and its trigger pair. Used by server.
  */
-public class PromiseBuilder<T> {
-    private init() { }
+open class PromiseBuilder<T> {
+    fileprivate init() { }
 
     /**
      * Builds promise tuple
      *
      * - returns: Promise/Trigger tuple
      */
-    public static func build() -> (itself: Promise<T>, trigger: PromiseTrigger<T>) {
+    open static func build() -> (itself: Promise<T>, trigger: PromiseTrigger<T>) {
         let p = Promise<T>()
         return (p, PromiseTrigger<T>(parent: p))
     }

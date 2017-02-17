@@ -1,15 +1,15 @@
-public class Period {
-    private var millisecondValue: Double
+open class Period {
+    fileprivate var millisecondValue: Double
 
-    public var milliseconds: Double {
+    open var milliseconds: Double {
         return millisecondValue
     }
 
-    public var seconds: Double {
+    open var seconds: Double {
         return milliseconds / 1000
     }
 
-    public var timerValue: Double {
+    open var timerValue: Double {
         return seconds
     }
 
