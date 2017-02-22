@@ -53,7 +53,7 @@ open class Chain<T> {
 
      * - returns: New chain
      */
-    open static func startWith<U>(_ command: @escaping ((U?) -> Void) -> Void) -> Chain<U> {
+    open static func startWith<U>(_ command: @escaping (_ next: @escaping (U?) -> Void) -> Void) -> Chain<U> {
         let e = Chain<U>()
 
         e.runCommand = { command(e.next) }
